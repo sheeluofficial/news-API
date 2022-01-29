@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+
+  <body>
+    <div id="main">
+      <!--No need to add sidebar here, directly display search results-->
+
+      <!-- show headline, description and image -->
+
+
+
+      <!-- Wrong -> <a href="/Users/jonny/Desktop/misc/jugnu-tester/template-U3C4/Template-U3C4/news.html"></a>
+
+
+      Correct -> <a href="/news.html"></a> -->
+
+
+    </div>
+  </body>
+
+</html>
+<script type="module">
+import { apiCall, appendArticles } from "./scripts/main.js"
+
+   let main = document.getElementById("main")
+
+   let term = JSON.parse(localStorage.getItem("term"))
+
+   let url = `https://gnews.io/api/v4/search?q=${term}&token=bed34689b5bc9ef93836cd9f68d8cd45`
+
+   let articles = await apiCall(url)
+    appendArticles(articles, main)
+   
+
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+    
+  
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="sidebar">
+
+        <!--DO NOT CHANGE THIS ID's-->
+       
+
+      </div>
+
+      <div id="main">
+        <!--DO NOT CHANGE THIS ID's-->
+
+      </div>
+    </div>
+  </body>
+
+</html>
+
+<script type="module">
+  import sidebar from "./components/sidebar.js"
+  document.getElementById("sidebar").innerHTML = sidebar()
+  import storeSearchterm from "./scripts/search.js"
+
+import { apiCall, appendArticles } from "./scripts/main.js"
+   let main = document.getElementById("main")
+  let  url = `https://gnews.io/api/v4/top-headlines?token=bed34689b5bc9ef93836cd9f68d8cd45&lang=en&country=in`
+    let articles = await apiCall(url)
+    appendArticles(articles, main)
+
+    document.getElementById("search-bar").addEventListener("keypress",(event)=>{
+      if(event.key == "Enter") {
+        let term = document.getElementById("search-bar").value;
+
+        storeSearchterm(term)
+        
+      }
+    })
+
+</script>
+
+
+

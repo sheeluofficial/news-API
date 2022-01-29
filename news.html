@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+      #img{
+      width: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--DO NOT CHANGE THIS ID's-->
+
+    <div id="container">
+      <div id="sidebar">
+        <!--add your sidebar component here-->
+      </div>
+
+      <div id="main">
+        <div id="headline">
+          <!--add headline here-->
+        </div>
+        <img id="img" src="" alt="" />
+        <!--show news image here-->
+
+
+        <div id="content">
+          <!--add news content here-->
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
+
+<script type="module">
+  import sidebar from "./components/sidebar.js"
+  import storeSearchterm from "./scripts/search.js"
+
+  document.getElementById("sidebar").innerHTML = sidebar()
+
+  let {title,content,image} = JSON.parse(localStorage.getItem("article"))
+
+  let h1 = document.createElement("h1");
+  h1.innerText= title;
+  document.getElementById("headline").append(h1)
+  document.getElementById("img").src = image;
+  let p = document.createElement("p");
+  p.innerText = content;
+  document.getElementById("content").innerText = content;
+
+  document.getElementById("search-bar").addEventListener("keypress",(event)=>{
+      if(event.key == "Enter") {
+        let term = document.getElementById("search-bar").value;
+
+        storeSearchterm(term)
+        
+      }
+    })
+
+</script>
